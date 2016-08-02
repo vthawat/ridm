@@ -1,0 +1,2 @@
+<a href="<?=base_url('web/articles')?>" class="btn icon-btn btn-primary"><span class="btn-glyphicon fa fa-list img-circle text-primary"></span>บทความทั้งหมด</a>
+<a href="<?=base_url('web/articles/edit/'.$view_item->id)?>" class="btn icon-btn btn-warning"><span class="btn-glyphicon fa fa-pencil img-circle text-warning"></span>แก้ไข</a>

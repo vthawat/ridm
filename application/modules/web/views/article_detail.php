@@ -1,0 +1,1 @@
+<?php if(!empty($view_item)):?><?=$view_item->content_detail?><?php endif;?>
