@@ -9,18 +9,17 @@
 					  <div class="carousel-inner">
 					    <div class="item active" id="1">
 					    	<div class="col-md-12 col-lg-12 col-xs-12">
-							  <img class="img-cover wow shake" data-wow-offset="10"  src="<?=base_url('images/cover/cover-1.png')?>">
+							  <img class="img-cover img-responsive wow shake" data-wow-offset="10"  src="<?=base_url('images/cover/cover-1.png')?>">
 							 </div>
 					    </div>
 					    <div class="item" id="2">
 				    	<div class="col-md-12 col-lg-12 col-xs-12">
-							  <img class="img-cover wow fadeInUpBig" data-wow-offset="10" src="<?=base_url('images/cover/cover-2.png')?>">
+							  <img class="img-cover img-responsive wow fadeInUpBig" data-wow-offset="10" src="<?=base_url('images/cover/cover-2.png')?>">
 							 </div>							 
 					    </div>
 					  </div>
 					</div>
 				</div>
 			</div>
-			<br>	
 		</div><!-- /container -->
 	</div><!--/ #headerwrap -->
