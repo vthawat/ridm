@@ -8,8 +8,8 @@ class Guest extends CI_Controller {
 		$this->load->model('web/web_model','Web');
 		$this->template->add_js($this->load->view('guest/js/slide-wow.js',null,TRUE),'embed',TRUE);
 		$this->template->add_css($this->load->view('guest/css/slide-intro.css',null,TRUE),'embed',TRUE);
-		$this->template->write('band_name','',TRUE);
-		//$this->template->write('band_name','<img class="ridm-logo" src="'.base_url('images/ridm-logo.png').'">',TRUE);
+		//$this->template->write('band_name','',TRUE);
+		$this->template->write('band_name','<img class="ridm-logo" src="'.base_url('images/ridm-logo.png').'">',TRUE);
 	}
 
 	public function index()

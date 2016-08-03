@@ -1,5 +1,5 @@
 .img-cover{
-	padding-top: 20px;
+	padding-top: 30px;
 }
 .ridm-logo{
 	height: 64px;
@@ -20,5 +20,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 #headerwrap {
 	/*background-color: #34495e;*/
-	height: 500px;
+	/*height: 500px;*/
 }
