@@ -69,7 +69,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 	   <div class="hidden-xs">
         <!-- Logo -->
-        <a href="" class="logo">
+        <a href="<?=base_url()?>" class="logo">
         	<span class="logo-mini"><img src="<?=base_url()?>images/band-ridm.png"></span>
           <!-- logo for regular state and mobile devices -->
           <span class="thai-webfont" style="font-size: 26px"><?=$band_name?></span>

@@ -6,10 +6,14 @@ class Guest extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('web/web_model','Web');
+		$this->load->model('base_product_type','Product_type');
+		$this->load->model('trader_production_items','Productions');
+		
 		$this->template->add_js($this->load->view('guest/js/slide-wow.js',null,TRUE),'embed',TRUE);
 		$this->template->add_css($this->load->view('guest/css/slide-intro.css',null,TRUE),'embed',TRUE);
 		//$this->template->write('band_name','',TRUE);
 		$this->template->write('band_name','<img class="ridm-logo" src="'.base_url('images/ridm-logo.png').'">',TRUE);
+		$this->template->write_view('menu','guest/menu');
 		$this->template->write_view('header','guest/slide-intro');
 	}
 
@@ -18,6 +22,7 @@ class Guest extends CI_Controller {
 
 		$this->load_jquery_dtable();
 		$data['km']=$this->load->view('guest/km-category-list',array('km_category'=>$this->Web->get_category_all()),TRUE);
+		$data['productions']=$this->load->view('guest/production-category',array('product_category'=>$this->Product_type->get_all()),TRUE);
 		$data['inside']=$this->load->view('guest/home_block',$data,TRUE);
 		$this->template->write_view('content','guest/content',$data);
 		$this->template->render();

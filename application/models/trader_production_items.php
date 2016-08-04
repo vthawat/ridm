@@ -10,6 +10,12 @@ class Trader_production_items extends CI_Model
 		
 			
 	}
+	function count_by_product_type($product_type_id)
+	{
+		$group_by=array('product_type_id');
+		$fillter=array('base_product_item.product_type_id'=>$product_type_id);
+		return count($this->get_group_by($group_by,null,null,$fillter));
+	}
 	function get_all($limit=null,$offset=null,$fillter=null)
 	{
 		

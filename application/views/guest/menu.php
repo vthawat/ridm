@@ -1,7 +1,8 @@
 	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav navbar-right">
-	            <li class="active"><a href="#home" class="smothscroll navbar-btn"><i class="fa fa-home"></i> หน้าหลัก</a></li>
-	            <li><a href="#desc" class="smothscroll navbar-btn"><i class="fa fa-info-circle"></i> เกี่ยวกับระบบ</a></li>
-	            <li><a href="#contact" class="smothScroll navbar-btn"><i class="fa fa-phone"></i> การติดต่อ</a></li>
+	          <ul class="nav nav-top navbar-nav navbar-right">
+	            <li><a href="<?=base_url('#home')?>" class="smothscroll navbar-btn"><i class="fa fa-home"></i> หน้าหลัก</a></li>
+	            <li><a href="<?=base_url('#km')?>" class="smothscroll navbar-btn"><i class="fa fa-square fa-fw"></i>การจัดการความรู้</a></li>
+	            <li><a href="<?=base_url('#production')?>" class="smothscroll navbar-btn"><i class="fa fa-paper-plane fa-fw"></i>ผลิตภัณฑ์</a></li>
+	            <li><a href="<?=base_url('trader')?>" class="smothScroll navbar-btn"><i class="fa fa-sign-in fa-fw"></i>เข้าสู่ระบบ</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->

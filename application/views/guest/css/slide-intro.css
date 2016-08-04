@@ -1,6 +1,9 @@
 .img-cover{
 	/*padding-top: 100px;*/
 }
+.nav-top{
+	margin-top: -8px;
+}
 .ridm-logo{
 	height: 64px;
 	margin-top: -10px;
