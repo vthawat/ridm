@@ -31,6 +31,15 @@ class web_model extends CI_Model
 		return $this->db->get()->result();
 		//return $result->result();
 	}
+	function get_articles_by($by_array=null)
+	{
+		$this->db->select('web_contents.*,web_categories.category_name');
+		$this->db->from('web_contents');
+		$this->db->join('web_categories','web_contents.cat_id = web_categories.id');
+		$this->db->where($by_array);
+		return $this->db->get()->result();
+		//return $result->result();
+	}
 	function post_category()
 	{
 		return $this->db->insert('web_categories',$this->data);

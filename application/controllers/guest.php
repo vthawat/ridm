@@ -10,21 +10,40 @@ class Guest extends CI_Controller {
 		$this->template->add_css($this->load->view('guest/css/slide-intro.css',null,TRUE),'embed',TRUE);
 		//$this->template->write('band_name','',TRUE);
 		$this->template->write('band_name','<img class="ridm-logo" src="'.base_url('images/ridm-logo.png').'">',TRUE);
+		$this->template->write_view('header','guest/slide-intro');
 	}
 
 	public function index()
 	{
 
-		
-		$this->template->write_view('header','guest/slide-intro');
-		//$data['km_category']=$this->Web->get_category_all();
-		$data['inside']=$this->load->view('guest/home_block',null,TRUE);
+		$data['km']=$this->load->view('guest/km-category-list',array('km_category'=>$this->Web->get_category_all()),TRUE);
+		$data['inside']=$this->load->view('guest/home_block',$data,TRUE);
 		$this->template->write_view('content','guest/content',$data);
 		$this->template->render();
 	}
-	function km($action=null)
+	function km($action=null,$id=null)
 	{
-		$this->template->write_view('header','guest/header_km');
+		$data['inside']=$this->load->view('guest/nav',null,TRUE);
+		$this->template->write_view('content','guest/content',$data);
+		switch ($action) {
+			case 'category':
+				$data['category_all']=$this->Web->get_category_all();
+				$by_array=array('web_contents.cat_id'=>$id);
+				$data['category']=$this->Web->get_articles_by($by_array);
+				$data['inside']=$this->load->view('guest/km-category',$data,TRUE);
+				$this->template->write_view('content','guest/content',$data);
+				break;
+			case 'article':
+				$data['category_all']=$this->Web->get_category_all();
+				$data['article']=$this->Web->get_article_by_id($id);
+				$data['inside']=$this->load->view('guest/km-article',$data,TRUE);
+				$this->template->write_view('content','guest/content',$data);
+
+				break;
+			default:
+				# code...
+				break;
+		}
 		$this->template->render();
 	}
 }
