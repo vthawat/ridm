@@ -16,6 +16,7 @@ class Guest extends CI_Controller {
 	public function index()
 	{
 
+		$this->load_jquery_dtable();
 		$data['km']=$this->load->view('guest/km-category-list',array('km_category'=>$this->Web->get_category_all()),TRUE);
 		$data['inside']=$this->load->view('guest/home_block',$data,TRUE);
 		$this->template->write_view('content','guest/content',$data);
@@ -46,6 +47,13 @@ class Guest extends CI_Controller {
 		}
 		$this->template->render();
 	}
+	function load_jquery_dtable()
+	{
+		$this->template->add_css('assets/plugins/datatables/dataTables.bootstrap.css');
+		$this->template->add_js('assets/plugins/datatables/jquery.dataTables.min.js');
+		$this->template->add_js('assets/plugins/datatables/dataTables.bootstrap.min.js');
+		$this->template->add_js($this->load->view('guest/js/datables.js',null,TRUE),'embed',TRUE);
+	}	
 }
 
 /* End of file welcome.php */
