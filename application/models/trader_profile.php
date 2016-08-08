@@ -9,6 +9,11 @@ class Trader_profile extends CI_Model
 		
 			
 	}
+	function count_by_geo_id($geo_id)
+	{
+		$fillter=array('geo_id'=>$geo_id);
+		return count($this->get_all(null,null,$fillter));
+	}
 	function get_by_id($id)
 	{
 		$this->db->where('id', $id);

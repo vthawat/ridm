@@ -1,4 +1,3 @@
-<section id="km"></section>
 <div class="box-footer">
 <table class="table">
 <thead>
@@ -11,7 +10,7 @@
       <tr>
       <td><?=$num?></td>
       <td><a href="<?=base_url('guest/km/category/'.$item->id)?>"><?=$item->category_name?></a></td>
-      <td class="text-center"><span class="badge bg-green"><?=$this->Web->count_article_in_category($item->id)?></span> เรื่อง</td>
+      <td class="text-center"><span class="badge bg-green number"><?=$this->Web->count_article_in_category($item->id)?></span> เรื่อง</td>
       </tr>
 
 <?php $num++;endforeach;?>

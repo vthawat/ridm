@@ -8,7 +8,19 @@
 	height: 64px;
 	margin-top: -10px;
 }
-
+.info-box-icon{
+	background: none;
+}
+.info-box{
+	min-height: 150px;
+	padding: 4px;
+}
+.info-box:hover{
+	background-color: #ecf0f1;
+}
+.number{
+	font-size: larger;
+}
 #navigation{
 height: 70px;
 border-bottom: none;

@@ -8,6 +8,9 @@ class Guest extends CI_Controller {
 		$this->load->model('web/web_model','Web');
 		$this->load->model('base_product_type','Product_type');
 		$this->load->model('trader_production_items','Productions');
+		$this->load->model('trader_profile','Traders');
+		$this->load->model('country_geography','Geo');
+		
 		
 		$this->template->add_js($this->load->view('guest/js/slide-wow.js',null,TRUE),'embed',TRUE);
 		$this->template->add_css($this->load->view('guest/css/slide-intro.css',null,TRUE),'embed',TRUE);
@@ -23,6 +26,7 @@ class Guest extends CI_Controller {
 		$this->load_jquery_dtable();
 		$data['km']=$this->load->view('guest/km-category-list',array('km_category'=>$this->Web->get_category_all()),TRUE);
 		$data['productions']=$this->load->view('guest/production-category',array('product_category'=>$this->Product_type->get_all()),TRUE);
+		$data['trader']=$this->load->view('guest/trader-geo-list',array('geo'=>$this->Geo->get_all()),TRUE);
 		$data['inside']=$this->load->view('guest/home_block',$data,TRUE);
 		$this->template->write_view('content','guest/content',$data);
 		$this->template->render();
