@@ -25,7 +25,6 @@
 	<div class="box box-info">
 	 <div class="box-header bg-aqua-gradient"><h4><i class="fa fa-fw fa-paper-plane"></i>ผลิตภัณฑ์ของอุตสาหกรรมยางพาราปลายน้ำ</h4></div>
 	 <div class="box-body">
-	 		<img class="img-responsive" src="<?=base_url('images/cover/production-cover.png')?>">
 		 <?php if(!empty($productions)):?>
 	 		 <?=$productions?>
 	 		<?php endif;?>

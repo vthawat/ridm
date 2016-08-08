@@ -12,9 +12,8 @@ class Trader_production_items extends CI_Model
 	}
 	function count_by_product_type($product_type_id)
 	{
-		$group_by=array('product_type_id');
 		$fillter=array('base_product_item.product_type_id'=>$product_type_id);
-		return count($this->get_group_by($group_by,null,null,$fillter));
+		return count($this->get_group_by(null,null,null,$fillter));
 	}
 	function get_all($limit=null,$offset=null,$fillter=null)
 	{
@@ -28,7 +27,7 @@ class Trader_production_items extends CI_Model
 	
 
 	}
-	function get_group_by($group_by=array(),$limit=null,$offset=null,$fillter=null)
+	function get_group_by($group_by=null,$limit=null,$offset=null,$fillter=null)
 	{
 		$this->db->select($this->table.'.*,trader_profile.geo_id,trader_profile.province_id,trader_profile.amphur_id');
 		$this->db->from($this->table);
@@ -42,7 +41,7 @@ class Trader_production_items extends CI_Model
 			
 			
 		}
-		$this->db->group_by($group_by);
+		if($group_by!=null)$this->db->group_by($group_by);
 		if(!empty($offset))$this->db->limit($offset,$limit);
 		return $this->db->get()->result();
 		// $this->db->get();
