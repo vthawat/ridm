@@ -14,11 +14,13 @@
 	 <div class="box-header"><h4></i>เว็บลิงค์</h4></div>
 	 <div class="box-body text-center">
 	 	<a href="http://www.nr-iri.psu.ac.th" target="_blank">
-	 	<img src="<?=base_url('images/nr-logo.png')?>">
-	 	<span>สถาบันวิจัยและพัฒนานวัตกรรมยางพารา</span>
+	 	<img class="img-responsive" src="<?=base_url('images/nr-logo.png')?>">
 	 	</a></div>
 	 <div class="box-footer text-center">
-	 	<a href="http://rubber.oie.go.th/" target="_blank"><img src="<?=base_url('images/RIU_Logo.png')?>"></a>
+	 	<a href="http://rubber.oie.go.th/" target="_blank"><img class="img-responsive" src="<?=base_url('images/RIU_Logo.png')?>"></a>
+	 </div>
+	 <div class="box-footer text-center">
+	 	<a href="http://www.fti.or.th" target="_blank"><img class="img-responsive" src="<?=base_url('images/fti-link.png')?>"></a>
 	 </div>
 
 	 </div>
@@ -50,11 +52,23 @@
 <div class="col-md-12">
 	<div class="box box-success">
 	 <div class="box-header"><h4>สถานวิจัยและทดสอบผลิตภัฑ์ยางพารา</h4></div>
-	 <div class="box-body text-center">
-		<img src="<?=base_url('images/research_test_place.png')?>">
+	 <div class="box-body">
+		<img class="img-responsive" src="<?=base_url('images/research_test_place.png')?>">
 		<div class="text-right">
-			<a class="btn btn-primary" href="http://nrthaist.psu.ac.th/guest/place" target="_blank">รายละเอียด</a>
+			<a class="btn btn-primary btn-lg" href="http://nrthaist.psu.ac.th/guest/place" target="_blank">รายละเอียด</a>
 		</div>
 	 </div>
 	</div>
 </div>
+<div class="col-md-12">
+	<div class="box box-info">
+	 <div class="box-header"><h4>นักวิจัยที่มีความสนใจทางด้านผลิตภัณฑ์ยางพารา</h4></div>
+	 <div class="box-body">
+		<img class="img-responsive" src="<?=base_url('images/researcher-timber.png')?>">
+		<div class="text-right">
+			<a class="btn btn-warning btn-lg" href="http://nrthaist.psu.ac.th/guest/specialization" target="_blank">รายละเอียด</a>
+		</div>
+	 </div>
+	</div>
+</div>
+
