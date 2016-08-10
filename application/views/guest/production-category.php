@@ -1,7 +1,7 @@
 <div class="box-footer">
 <?php if(!empty($product_category)) foreach($product_category as $item):?>
 	<div class="col-md-6 col-sm-6 col-xs-12">
-          <a href="#">
+          <a href="<?=base_url('guest/production?product_type_id='.$item->id)?>">
           <div class="info-box wow bounceInUp">
             <span class="info-box-icon">
             <?php if(!empty($item->product_icon)):?>
