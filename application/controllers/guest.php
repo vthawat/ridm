@@ -37,22 +37,28 @@ class Guest extends CI_Controller {
 	}
 	function km($action=null,$id=null)
 	{
-		$data['inside']=$this->load->view('guest/nav',null,TRUE);
-		$this->template->write_view('content','guest/content',$data);
+		//$data['inside']=$this->load->view('guest/nav',null,TRUE);
+		//$this->template->write_view('content','guest/nav');
 		switch ($action) {
 			case 'category':
 				$data['category_all']=$this->Web->get_category_all();
 				$by_array=array('web_contents.cat_id'=>$id);
 				$data['category']=$this->Web->get_articles_by($by_array);
-				$data['inside']=$this->load->view('guest/km-category',$data,TRUE);
-				$this->template->write_view('content','guest/content',$data);
+				//$data['inside']=$this->load->view('guest/km-category',$data,TRUE);
+				//$this->template->write_view('content','guest/km-category',$data);
+				$data['content']=array('color'=>'primary',
+											'title'=>$this->load->view('guest/nav',null,TRUE),
+											'detail'=>$this->load->view('guest/km-category',$data,TRUE));
+				$this->template->write_view('content','guest/contents',$data);	
 				break;
 			case 'article':
+				$this->Web->set_hit_view_article($id);
 				$data['category_all']=$this->Web->get_category_all();
 				$data['article']=$this->Web->get_article_by_id($id);
-				$data['inside']=$this->load->view('guest/km-article',$data,TRUE);
-				$this->template->write_view('content','guest/content',$data);
-
+				$data['content']=array('color'=>'primary',
+											'title'=>$this->load->view('guest/nav',null,TRUE),
+											'detail'=>$this->load->view('guest/km-article',$data,TRUE));
+				$this->template->write_view('content','guest/contents',$data);	
 				break;
 			default:
 				# code...
@@ -132,6 +138,112 @@ class Guest extends CI_Controller {
 
 
 		$this->template->render();
+	}
+	function trader($action=null,$id=null)
+	{
+			switch ($action) 
+			{
+				case 'view':
+					$data['trader']=$this->Traders->get_by_id($id);
+					$this->template->add_js('assets/light-gallery/js/lightgallery.js');
+					$this->template->add_css('assets/light-gallery/css/lightgallery.css');
+					$this->template->add_js($this->load->view('guest/js/light-box.js',null,TRUE),'embed',TRUE);
+					$this->template->add_css($this->load->view('guest/css/products-list.css',null,TRUE),'embed',TRUE);
+									// map helpers
+					$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places','link');
+					//$this->template->add_js('assets/gmaps/js/locationpicker.jquery.min.js');
+					$this->template->add_js('assets/gmaps/js/gmap3.min.js');
+					$this->template->add_css($this->load->view('guest/css/map.css',null,TRUE),'embed',TRUE);
+
+					$this->template->add_js($this->load->view('guest/js/view-single-map.js',null,TRUE),'embed',TRUE);
+					
+					$map=json_encode(array('lat'=>$data['trader']->latitude,'lon'=>$data['trader']->longtitude));
+					$json_val='var view_location='.$map;
+					$this->template->add_js($json_val,'embed',TRUE);
+						
+					
+					$data['trader_production_items']=$this->Productions;
+					$trader_name=$data['trader']->trader_type.$data['trader']->trader_name;
+					$data['content']=array('color'=>'primary',
+												'size'=>9,
+												'title'=>$this->load->view('guest/nav',null,TRUE)."<h3 class='text-blue'>รายละเอียด<i class='fa fa-angle-double-right fa-fw'></i>".$trader_name."</h3>",
+												'toolbar'=>'',
+												'detail'=>$this->load->view('guest/profile_details',$data,TRUE));
+					$this->template->write_view('content','guest/contents',$data);		
+									// prepare data for fillter 
+					
+					$this->template->add_js($this->load->view('guest/js/geo_fillter.js',null,TRUE),'embed',TRUE);
+					$fillter['geo_fillter']=$this->Geo->get_all();
+					$fillter['product_type_fillter']=$this->Product_type->get_all();
+					
+					$data['content']=array('title'=>"<i class='fa fa-filter fa-fw'></i>ตัวกรองข้อมูล",
+											'size'=>3,
+											'color'=>'success',
+											'detail'=>$this->load->view('guest/profile_fillter',$fillter,TRUE));
+					$this->template->write_view('content','guest/contents',$data);
+					break;
+				
+				default:
+					$fillter_post=$this->input->post();
+				if(!empty($fillter_post)) $fillter=$fillter_post;
+				else
+				{
+					$fillter_get=array('geo_id'=>$this->input->get('geo_id'),
+										'province_id'=>$this->input->get('province_id'),
+										'amphur_id'=>$this->input->get('amphur_id')
+										);
+					$fillter=$fillter_get;
+				}
+				$fillter_query_string='?geo_id='.$this->input->get_post('geo_id');
+				$fillter_query_string.='&province_id='.$this->input->get_post('province_id');
+				$fillter_query_string.='&amphur_id='.$this->input->get_post('amphur_id');
+				
+				$limit=$this->input->get('per_page');
+				$config['page_query_string'] = TRUE;
+				$config['base_url'] = base_url('guest/trader'.$fillter_query_string);
+				$config['total_rows'] = count($this->Traders->get_all(null,null,$fillter));
+				$config['per_page'] = 10;
+				$config['first_tag_open'] = '<li>';
+				$config['first_tag_close'] = '</li>';
+				$config['last_tag_open'] = '<li>';
+				$config['last_tag_close'] = '</li>';
+				$config['next_link']='<i class="fa fa-forward" aria-hidden="true"></i>';
+				$config['prev_link']='<i class="fa fa-backward" aria-hidden="true"></i>';
+				$config['next_tag_open'] = '<li>';
+				$config['next_tag_close'] = '</li>';
+				$config['prev_tag_open'] = '<li>';
+				$config['prev_tag_close'] = '</li>';
+				$config['cur_tag_open'] = '<li class="active"><a>';
+				$config['cur_tag_close'] = '</a></li>';
+				$config['num_tag_open'] = '<li>';
+				$config['num_tag_close'] = '</li>';
+				$this->pagination->initialize($config); 
+				$data['pageingation']=$this->pagination->create_links();
+				$data['trader']=$this->Traders->get_all($limit,$config['per_page'],$fillter);
+				$data['trader_status_list']=$this->Traders->get_status_all();
+				$data['trader_production_items']=$this->Productions;
+				$data['product_list']=$this->load->view('guest/production_list_name',$data,TRUE);
+				$this->template->add_css($this->load->view('guest/css/products-list.css',null,TRUE),'embed',TRUE);
+			
+				$data['content']=array('color'=>'primary',
+											'size'=>9,
+											'title'=>$this->load->view('guest/nav',null,TRUE).'<h3>จำนวนทั้งหมด '.$config['total_rows'].' รายการ</h3>',
+											'toolbar'=>'',
+											'detail'=>$this->load->view('guest/profile_list_items',$data,TRUE));;
+				$this->template->write_view('content','guest/contents',$data);
+						
+							// prepare data for fillter 
+				$this->template->add_js($this->load->view('guest/js/geo_fillter.js',null,TRUE),'embed',TRUE);
+				$fillter['geo_fillter']=$this->Geo->get_all();
+				$fillter['product_type_fillter']=$this->Product_type->get_all();
+				$data['content']=array('title'=>"<i class='fa fa-filter fa-fw'></i>ตัวกรองข้อมูล",
+										'size'=>3,
+										'color'=>'success',
+										'detail'=>$this->load->view('guest/profile_fillter',$fillter,TRUE));
+				$this->template->write_view('content','guest/contents',$data);
+					break;
+			}
+			$this->template->render();
 	}	
 
   function json_get_province_by_geo_id($geo_id)

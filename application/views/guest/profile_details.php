@@ -1,4 +1,4 @@
-		<?php $this->load->helper('trader_profile');?>
+		<?php $this->load->helper('trader/trader_profile');?>
 		<?php if(!empty($trader)):?>
 		 <div class="col-md-3">
 			<div class="box box-default">

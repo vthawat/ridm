@@ -1,7 +1,7 @@
 <section id="km"></section>
 <div class="col-md-9">
 	<div class="box box-success">
-	 <div class="box-header"><h4>การจัดการความรู้ของอุตสาหกรรมยางพาราปลายน้ำ</h4></div>
+	 <div class="box-header"><h4>การจัดการความรู้ที่เกี่ยวกับอุตสาหกรรมยางพาราปลายน้ำ</h4></div>
 	 <div class="box-body">
 	 		<?php if(!empty($km)):?>
 	 		 <?=$km?>
@@ -24,32 +24,8 @@
 	 </div>
 
 	 </div>
-
 </div>
-
-<section id="production">
-<div class="col-md-6">
-	<div class="box box-info">
-	 <div class="box-header"><h4></i>ผลิตภัณฑ์อุตสาหกรรมยางพาราปลายน้ำ</h4></div>
-	 <div class="box-body">
-		 <?php if(!empty($productions)):?>
-	 		 <?=$productions?>
-	 		<?php endif;?>
-	 </div>
-	</div>
-</div>
-</section>
-<div class="col-md-6">
-	<div class="box box-warning">
-	 <div class="box-header"><h4>ผู้ประกอบการอุตสาหรรมยางพาราปลายน้ำ</h4></div>
-	 <div class="box-body">
-		 <?php if(!empty($trader)):?>
-	 		 <?=$trader?>
-	 		<?php endif;?>
-	 </div>
-	</div>
-</div>
-<div class="col-md-6">
+<div class="col-md-3">
 	<div class="box box-success">
 	 <div class="box-header"><h4>สถานวิจัยและทดสอบผลิตภัฑ์ยางพารา</h4></div>
 	 <div class="box-body">
@@ -60,7 +36,19 @@
 	 </div>
 	</div>
 </div>
-<div class="col-md-6">
+
+<section id="production">
+<div class="col-md-9">
+	<div class="box box-info">
+	 <div class="box-header"><h4></i>ผลิตภัณฑ์อุตสาหกรรมยางพาราปลายน้ำ</h4></div>
+	 <div class="box-body">
+		 <?php if(!empty($productions)):?>
+	 		 <?=$productions?>
+	 		<?php endif;?>
+	 </div>
+	</div>
+</div>
+<div class="col-md-3">
 	<div class="box box-info">
 	 <div class="box-header"><h4>นักวิจัยที่มีความสนใจทางด้านผลิตภัณฑ์ยางพารา</h4></div>
 	 <div class="box-body">
@@ -71,4 +59,16 @@
 	 </div>
 	</div>
 </div>
+</section>
+<div class="col-md-9">
+	<div class="box box-warning">
+	 <div class="box-header"><h4>ผู้ประกอบการอุตสาหรรมยางพาราปลายน้ำ</h4></div>
+	 <div class="box-body">
+		 <?php if(!empty($trader)):?>
+	 		 <?=$trader?>
+	 		<?php endif;?>
+	 </div>
+	</div>
+</div>
+
 

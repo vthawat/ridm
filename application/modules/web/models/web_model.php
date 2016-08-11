@@ -8,6 +8,21 @@ class web_model extends CI_Model
 		parent::__construct();
 		$this->data=$this->input->post();
 	}
+	function set_hit_view_article($article_id)
+	{
+
+		//$this->
+		$current_hits=$this->get_hit_view_article($article_id);
+		$current_hits=$current_hits+1;
+		$this->db->where('id',$article_id);
+		$this->db->update('web_contents',array('view_hits'=>$current_hits));
+		return TRUE;
+	}
+	function get_hit_view_article($article_id)
+	{
+		$this->db->where('id',$article_id);
+		return $this->db->get('web_contents')->row()->view_hits;
+	}
 	function get_category_all()
 	{
 		return $this->db->get('web_categories')->result();

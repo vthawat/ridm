@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-            $('#gm-map').gmap3({
+         $('#gm-map').gmap3({
 
             	center:[view_location.lat, view_location.lon],
        			 zoom:12

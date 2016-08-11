@@ -1,7 +1,7 @@
 <div class="box-footer">
 <?php if(!empty($geo)) foreach($geo as $item):?>
 	<div class="col-md-6 col-sm-6 col-xs-12">
-          <a href="#">
+          <a href="<?=base_url('guest/trader?geo_id='.$item->GEO_ID)?>">
           <div class="info-box wow bounceIn">
           <span class="info-box-icon"><img src="<?=base_url('images/geo-pin.png')?>"></span>
             <div class="info-box-content">

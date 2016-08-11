@@ -4,9 +4,8 @@ $(document).ready(function(){
                 location: {
                     latitude: $('#latitude').val(),
                     longitude:  $('#longtitude').val(),
-                   // icon: window.location.origin+'/ridm/images/icon-maker.png',
                 },
-                radius: 0,
+                radius: 120,
                 inputBinding: {
                     latitudeInput: $('#latitude'),
                     longitudeInput: $('#longtitude'),
@@ -19,6 +18,7 @@ $(document).ready(function(){
                     //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
                    // var mapContext = $(this).locationpicker('map');
                 }
-            });
+            })
+
 
 });

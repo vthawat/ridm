@@ -1,5 +1,5 @@
 <?php if(!empty($category)):?>
-<div class="box box-success">
+<div class="box">
 <div class="box-header"><img height="120" src="<?=base_url('images/cover/km-cover.png')?>"></div>
 <div class="box-footer">
 
@@ -18,7 +18,7 @@
 <h3 class="text-success">หมวดหมู่: <?=$category[0]->category_name?></h3>
 	<ul class="list-group">
 	<?php foreach($category as $item):?>
-		<li class="list-group-item"><a href="<?=base_url('guest/km/article/'.$item->id)?>"><i class="fa fa-fw fa-chevron-circle-right "></i><?=$item->content_name?></a></li>
+		<li class="list-group-item"><a href="<?=base_url('guest/km/article/'.$item->id)?>"><i class="fa fa-fw fa-chevron-circle-right "></i><?=$item->content_name?></a><span class="badge bg-green"><?=$this->Web->get_hit_view_article($item->id)?> Views</span></li>
 	<?php endforeach;?>
 	</ul>
 </div>

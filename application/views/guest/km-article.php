@@ -1,5 +1,5 @@
 <?php if(!empty($article)):?>
-<div class="box box-success">
+<div class="box">
 <div class="box-header"><img height="120" src="<?=base_url('images/cover/km-cover.png')?>"></div>
 <div class="box-footer">
 	<!-- Single button -->

@@ -45,7 +45,7 @@
 												<?php endif;?></address>
 									</div>
 									<div class="pull-right">
-									<a href="<?=base_url('trader/profile/view/'.$product->trader_profile_id)?>" class="btn icon-btn btn-info"><span class="btn-glyphicon fa fa-search-plus img-circle text-info"></span>รายละเอียด</a>
+									<a href="<?=base_url('guest/trader/view/'.$product->trader_profile_id)?>" class="btn icon-btn btn-info"><span class="btn-glyphicon fa fa-search-plus img-circle text-info"></span>รายละเอียด</a>
 									</div>
 									<div class="clearfix"></div>
 									</div>
@@ -56,3 +56,8 @@
 <?php if(!empty($pageingation)):?>
 	<div class="text-center"><nav><ul class="pagination pagination-lg"><?=$pageingation?></ul></nav></div>
 	<?php endif;?>
+<?php if(empty($productions)):?>
+	<div class="alert alert-danger">
+		<h3><i class="fa fa-fw fa-exclamation"></i>ไม่พบรายการ</h3>
+	</div>
+<?php endif?>

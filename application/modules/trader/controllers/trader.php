@@ -46,7 +46,8 @@ class Trader extends CI_Controller {
 					$this->template->add_css($this->load->view('css/products-list.css',null,TRUE),'embed',TRUE);
 									// map helpers
 					$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places','link');
-					$this->template->add_js('assets/gmaps/js/locationpicker.jquery.min.js');
+					//$this->template->add_js('assets/gmaps/js/locationpicker.jquery.min.js');
+					$this->template->add_js('assets/gmaps/js/gmap3.min.js');
 					$this->template->add_css($this->load->view('css/map.css',null,TRUE),'embed',TRUE);
 					$this->template->add_js($this->load->view('js/view-single-map.js',null,TRUE),'embed',TRUE);
 					
