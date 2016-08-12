@@ -1,4 +1,4 @@
-<section id="km"></section>
+<section id="km">
 <div class="col-md-9">
 	<div class="box box-success">
 	 <div class="box-header"><h4>การจัดการความรู้ที่เกี่ยวกับอุตสาหกรรมยางพาราปลายน้ำ</h4></div>
@@ -9,6 +9,7 @@
 	 </div>
 	</div>
 </div>
+</section>
 <div class="col-md-3">
 	<div class="box box-success">
 	 <div class="box-header"><h4></i>เว็บลิงค์</h4></div>
@@ -48,6 +49,7 @@
 	 </div>
 	</div>
 </div>
+</section>
 <div class="col-md-3">
 	<div class="box box-info">
 	 <div class="box-header"><h4>นักวิจัยที่มีความสนใจทางด้านผลิตภัณฑ์ยางพารา</h4></div>
@@ -59,7 +61,6 @@
 	 </div>
 	</div>
 </div>
-</section>
 <div class="col-md-9">
 	<div class="box box-warning">
 	 <div class="box-header"><h4>ผู้ประกอบการอุตสาหรรมยางพาราปลายน้ำ</h4></div>

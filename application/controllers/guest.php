@@ -139,10 +139,86 @@ class Guest extends CI_Controller {
 
 		$this->template->render();
 	}
+	function gis_trader_json($trader=null)
+	{
+		$gis=array();
+		foreach ($trader as $item) {
+			if($item->latitude!=0&&$item->longtitude!=0)
+			{
+				array_push($gis,array('position'=>array($item->latitude,$item->longtitude),
+				array('content'=>array($item->id))));
+			}
+		}
+		//exit(print_r($gis));
+		return json_encode($gis);
+	}
 	function trader($action=null,$id=null)
 	{
+
 			switch ($action) 
 			{
+				case 'gis':
+					$fillter_post=$this->input->post();
+					if(!empty($fillter_post)) $fillter=$fillter_post;
+					else
+					{
+						$fillter_get=array('geo_id'=>$this->input->get('geo_id'),
+											'province_id'=>$this->input->get('province_id'),
+											'amphur_id'=>$this->input->get('amphur_id')
+											);
+						$fillter=$fillter_get;
+					}
+					$fillter_query_string='?geo_id='.$this->input->get_post('geo_id');
+					$fillter_query_string.='&province_id='.$this->input->get_post('province_id');
+					$fillter_query_string.='&amphur_id='.$this->input->get_post('amphur_id');
+					
+					$data['gis_data']=$this->Traders->get_all(null,null,$fillter);
+					
+					if(!empty($data['gis_data']))
+					{
+						$map_icon=json_encode(array('icon'=>base_url('images/trader-pin.png')));
+						$trader_detail_path=json_encode(array('path'=>base_url('guest/trader/ajax/')));
+						$json_gis_data=$this->gis_trader_json($this->Traders->get_all(null,null,$fillter));
+						$json_val='var trader_gis='.$json_gis_data.';';
+						$json_val.='var map_icon='.$map_icon.';';
+						$json_val.='var trader_detail_path='.$trader_detail_path.';';
+						$this->template->add_js($json_val,'embed',TRUE);
+							// map helpers
+						$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places','link');
+						$this->template->add_js('assets/gmaps/js/gmap3.min.js');
+						$this->template->add_css($this->load->view('guest/css/map.css',null,TRUE),'embed',TRUE);
+						$this->template->add_js($this->load->view('guest/js/view-big-map.js',null,TRUE),'embed',TRUE);
+					}
+					// gis map
+					$data['content']=array('title'=>$this->load->view('guest/nav',null,TRUE)."<i class='fa fa-map-marker fa-fw'></i>GIS View",
+											'size'=>9,
+											'toolbar'=>'<a href="'.base_url('guest/trader'.$fillter_query_string).'" class="btn btn-default"><i class="fa fa-fw fa-th-list"></i>List View</a>',
+											'color'=>'primary',
+											'detail'=>$this->load->view('guest/trader-gis',$data,TRUE));
+					$this->template->write_view('content','guest/contents',$data);
+
+
+					// prepare data for fillter 
+					$this->template->add_js($this->load->view('guest/js/geo_fillter.js',null,TRUE),'embed',TRUE);
+					$fillter['geo_fillter']=$this->Geo->get_all();
+					$fillter['product_type_fillter']=$this->Product_type->get_all();
+					$data['content']=array('title'=>"<i class='fa fa-filter fa-fw'></i>ตัวกรองข้อมูล",
+											'size'=>3,
+											'color'=>'success',
+											'detail'=>$this->load->view('guest/profile_fillter_gis',$fillter,TRUE));
+					$this->template->write_view('content','guest/contents',$data);
+				break;
+				case 'ajax':
+					$this->template->add_js('assets/light-gallery/js/lightgallery.js');
+					$this->template->add_css('assets/light-gallery/css/lightgallery.css');
+					$this->template->add_js($this->load->view('guest/js/light-box.js',null,TRUE),'embed',TRUE);
+					$this->template->add_css($this->load->view('guest/css/products-list.css',null,TRUE),'embed',TRUE);
+					$data['trader']=$this->Traders->get_by_id($id);
+					$data['trader_production_items']=$this->Productions;
+					//$trader_name=$data['trader']->trader_type.$data['trader']->trader_name;
+					print $this->load->view('guest/trader-modal-detail',$data,TRUE);
+					exit;
+				break;
 				case 'view':
 					$data['trader']=$this->Traders->get_by_id($id);
 					$this->template->add_js('assets/light-gallery/js/lightgallery.js');
@@ -158,7 +234,9 @@ class Guest extends CI_Controller {
 					$this->template->add_js($this->load->view('guest/js/view-single-map.js',null,TRUE),'embed',TRUE);
 					
 					$map=json_encode(array('lat'=>$data['trader']->latitude,'lon'=>$data['trader']->longtitude));
-					$json_val='var view_location='.$map;
+					$images_path=json_encode(array('imgpath'=>base_url('images')));
+					$json_val='var view_location='.$map.';';
+					$json_val.='var images_path='.$images_path.';';
 					$this->template->add_js($json_val,'embed',TRUE);
 						
 					
@@ -228,7 +306,7 @@ class Guest extends CI_Controller {
 				$data['content']=array('color'=>'primary',
 											'size'=>9,
 											'title'=>$this->load->view('guest/nav',null,TRUE).'<h3>จำนวนทั้งหมด '.$config['total_rows'].' รายการ</h3>',
-											'toolbar'=>'',
+											'toolbar'=>'<a href="'.base_url('guest/trader/gis'.$fillter_query_string).'" class="btn btn-default"><i class="fa fa-fw fa-map-marker"></i>GIS View</a>',
 											'detail'=>$this->load->view('guest/profile_list_items',$data,TRUE));;
 				$this->template->write_view('content','guest/contents',$data);
 						

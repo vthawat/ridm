@@ -52,7 +52,9 @@ class Trader extends CI_Controller {
 					$this->template->add_js($this->load->view('js/view-single-map.js',null,TRUE),'embed',TRUE);
 					
 					$map=json_encode(array('lat'=>$data['trader']->latitude,'lon'=>$data['trader']->longtitude));
-					$json_val='var view_location='.$map;
+					$images_path=json_encode(array('imgpath'=>base_url('images')));
+					$json_val='var view_location='.$map.';';
+					$json_val.='var images_path='.$images_path.';';
 					$this->template->add_js($json_val,'embed',TRUE);
 						
 					

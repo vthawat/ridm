@@ -177,7 +177,7 @@
 						</div>
 						<div class="box-footer bg-light-blue-gradient"><h4><i class="fa fa-map-marker fa-fw"></i>แผนที่ตั้ง</h4>
 							<div id="gm-map"></div>
-							<div id="street-view" style="width:100%; height: 400px; margin-top:50px"></div>
+							<div id="street-view" style="width:100%; height: 400px; margin-top:10px"></div>
 						</div>
 					</div>
 					</div>

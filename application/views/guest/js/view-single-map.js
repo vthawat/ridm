@@ -7,7 +7,7 @@ $(document).ready(function(){
             })
              .marker({
         position: [view_location.lat, view_location.lon],
-        icon: window.location.origin+'/ridm/images/trader-pin.png'
+        icon: images_path.imgpath+'/trader-pin.png'
      	 })
           .streetviewpanorama('#street-view',
         {
