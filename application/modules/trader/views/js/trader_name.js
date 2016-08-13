@@ -5,7 +5,7 @@
 			
 			//alert('ok');
 			$('.new-trader-name').text($('#trader_type').val()+$(this).val());
-			$('#map-address').val($(this).val());
+			//$('#map-address').val($(this).val());
 		});
 		
 	/** on trader type change */				

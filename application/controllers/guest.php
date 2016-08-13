@@ -158,16 +158,12 @@ class Guest extends CI_Controller {
 			switch ($action) 
 			{
 				case 'gis':
-					$fillter_post=$this->input->post();
-					if(!empty($fillter_post)) $fillter=$fillter_post;
-					else
-					{
-						$fillter_get=array('geo_id'=>$this->input->get('geo_id'),
-											'province_id'=>$this->input->get('province_id'),
-											'amphur_id'=>$this->input->get('amphur_id')
+						$fillter=array('geo_id'=>$this->input->get_post('geo_id'),
+											'province_id'=>$this->input->get_post('province_id'),
+											'amphur_id'=>$this->input->get_post('amphur_id'),
+											'published'=>'2'
 											);
-						$fillter=$fillter_get;
-					}
+					
 					$fillter_query_string='?geo_id='.$this->input->get_post('geo_id');
 					$fillter_query_string.='&province_id='.$this->input->get_post('province_id');
 					$fillter_query_string.='&amphur_id='.$this->input->get_post('amphur_id');
@@ -192,7 +188,7 @@ class Guest extends CI_Controller {
 					// gis map
 					$data['content']=array('title'=>$this->load->view('guest/nav',null,TRUE)."<i class='fa fa-map-marker fa-fw'></i>GIS View",
 											'size'=>9,
-											'toolbar'=>'<a href="'.base_url('guest/trader'.$fillter_query_string).'" class="btn btn-default"><i class="fa fa-fw fa-th-list"></i>List View</a>',
+											'toolbar'=>'<a href="'.base_url('guest/trader'.$fillter_query_string).'" class="icon-btn btn btn-warning"><span class="btn-glyphicon fa fa-th-list img-circle text-warning"></span>List View</a>',
 											'color'=>'primary',
 											'detail'=>$this->load->view('guest/trader-gis',$data,TRUE));
 					$this->template->write_view('content','guest/contents',$data);
@@ -262,16 +258,11 @@ class Guest extends CI_Controller {
 					break;
 				
 				default:
-					$fillter_post=$this->input->post();
-				if(!empty($fillter_post)) $fillter=$fillter_post;
-				else
-				{
-					$fillter_get=array('geo_id'=>$this->input->get('geo_id'),
-										'province_id'=>$this->input->get('province_id'),
-										'amphur_id'=>$this->input->get('amphur_id')
-										);
-					$fillter=$fillter_get;
-				}
+				$fillter=array('geo_id'=>$this->input->get_post('geo_id'),
+											'province_id'=>$this->input->get_post('province_id'),
+											'amphur_id'=>$this->input->get_post('amphur_id'),
+											'published'=>'2'
+											);
 				$fillter_query_string='?geo_id='.$this->input->get_post('geo_id');
 				$fillter_query_string.='&province_id='.$this->input->get_post('province_id');
 				$fillter_query_string.='&amphur_id='.$this->input->get_post('amphur_id');
@@ -306,7 +297,7 @@ class Guest extends CI_Controller {
 				$data['content']=array('color'=>'primary',
 											'size'=>9,
 											'title'=>$this->load->view('guest/nav',null,TRUE).'<h3>จำนวนทั้งหมด '.$config['total_rows'].' รายการ</h3>',
-											'toolbar'=>'<a href="'.base_url('guest/trader/gis'.$fillter_query_string).'" class="btn btn-default"><i class="fa fa-fw fa-map-marker"></i>GIS View</a>',
+											'toolbar'=>'<a href="'.base_url('guest/trader/gis'.$fillter_query_string).'" class="btn btn-warning icon-btn"><span class="btn-glyphicon fa fa-dot-circle-o img-circle text-warning"></span>GIS View</a>',
 											'detail'=>$this->load->view('guest/profile_list_items',$data,TRUE));;
 				$this->template->write_view('content','guest/contents',$data);
 						

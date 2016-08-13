@@ -12,7 +12,8 @@ class Trader_production_items extends CI_Model
 	}
 	function count_by_product_type($product_type_id)
 	{
-		$fillter=array('base_product_item.product_type_id'=>$product_type_id);
+		$fillter=array('base_product_item.product_type_id'=>$product_type_id,
+						'trader_profile.published'=>2);
 		return count($this->get_group_by(null,null,null,$fillter));
 	}
 	function get_all($limit=null,$offset=null,$fillter=null)
@@ -29,7 +30,7 @@ class Trader_production_items extends CI_Model
 	}
 	function get_group_by($group_by=null,$limit=null,$offset=null,$fillter=null)
 	{
-		$this->db->select($this->table.'.*,trader_profile.geo_id,trader_profile.province_id,trader_profile.amphur_id');
+		$this->db->select($this->table.'.*,trader_profile.geo_id,trader_profile.province_id,trader_profile.amphur_id,trader_profile.published');
 		$this->db->from($this->table);
 		$this->db->join('trader_profile',$this->table.'.trader_profile_id=trader_profile.id');
 		$this->db->join('base_product_item',$this->table.'.product_item_id=base_product_item.id');
@@ -100,6 +101,11 @@ class Trader_production_items extends CI_Model
 	function delete($product_id)
 	{
 		$this->db->where('id',$product_id);
+		return $this->db->delete($this->table);
+	}
+	function delete_by_trader_id($trader_id)
+	{
+		$this->db->where('trader_profile_id',$trader_id);
 		return $this->db->delete($this->table);
 	}
 	

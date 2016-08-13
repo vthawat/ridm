@@ -1,6 +1,6 @@
             <!-- Optionally, you can add icons to the links -->          
 		    <li class="treeview">
-              <a href="<?=base_url()?>"><i class='fa fa-dashcube text-green fa-fw'></i><span>ข้อมูลอุตสาหกรรมยางพาราฯ</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <a href="<?=base_url()?>"><i class='fa fa-dashcube text-green fa-fw'></i><span>อุตสาหกรรมยางพาราฯ</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
               	<li><a href="<?=base_url('trader/profile')?>"><i class='fa fa-th-list text-green fa-fw'></i><?=$header_title['profile']?></a></li>
                 <li><a href="<?=base_url('trader/production')?>"><i class='fa fa-paper-plane text-green fa-fw'></i><?=$header_title['production']?></a></li>

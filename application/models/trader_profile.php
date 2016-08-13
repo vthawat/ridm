@@ -11,7 +11,8 @@ class Trader_profile extends CI_Model
 	}
 	function count_by_geo_id($geo_id)
 	{
-		$fillter=array('geo_id'=>$geo_id);
+		$fillter=array('geo_id'=>$geo_id,
+						'published'=>2);
 		return count($this->get_all(null,null,$fillter));
 	}
 	function get_by_id($id)
@@ -50,7 +51,13 @@ class Trader_profile extends CI_Model
 	}
 	function delete($id)
 	{
-		if($this->db->delete($this->table,array('id'=>$id))) return true;
+		// delete from trader production
+		$this->load->model('trader_production_items');
+		if($this->trader_production_items->delete_by_trader_id($id))
+		{
+		// delete from trader profile
+			$this->db->delete($this->table,array('id'=>$id));
+		}
 		else return false;
 	}
 	function get_status_all()

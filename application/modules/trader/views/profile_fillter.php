@@ -52,6 +52,21 @@
 		 	</select>
 		 </div>
 	</div>
+		<div class="form-group">
+		 <label for="published" class="col-sm-3 control-label">สถานะ</label>
+		 <div class="col-sm-9">
+		 	<select class="form-control" id="published" name="published">
+		 		<option value="">--เลือกสถานะ--</option>
+		 			<?php foreach($status_list as $item):?>
+		 				<?php if($this->input->get_post('published')==$item->status):?>
+		 					<option value="<?=$item->status?>" selected><?=$item->status_name?></option>
+		 				<?php else:?>
+		 				<option value="<?=$item->status?>"><?=$item->status_name?></option>
+		 				<?php endif?>
+		 			<?php endforeach;?>
+		 	</select>
+		 </div>
+	</div>
 	  	<div class="form-group">
     <div class="col-sm-9 col-sm-offset-3">
       <button class="btn icon-btn btn-success save" type="submit"><span class="btn-glyphicon fa fa-check img-circle text-success"></span>ตกลง</button>

@@ -44,7 +44,7 @@ $("a[href='#trader-locate']").on('shown.bs.tab', function(){
 	$("#gm-map").goMap({
 		scaleControl: true, 
 		maptype: 'ROADMAP', 
-		streetViewControl: false,
+		streetViewControl: true,
 		zoom: zoom,
 		address:$addres_fillter,
 		markers: [{

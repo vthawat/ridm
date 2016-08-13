@@ -27,7 +27,10 @@ class Trader extends CI_Controller {
 		
 		switch($action)
 		{
-
+			case 'delete':
+				$this->trader_profile->delete($id);
+				redirect(base_url('trader/profile'));
+			break;
 			
 			case 'change_staus':
 
@@ -167,19 +170,17 @@ class Trader extends CI_Controller {
 					$this->template->write_view('content','contents',$data);					
 			break;
 			case 'fillter':
-				$fillter_post=$this->input->post();
-				if(!empty($fillter_post)) $fillter=$fillter_post;
-				else
-				{
-					$fillter_get=array('geo_id'=>$this->input->get('geo_id'),
-										'province_id'=>$this->input->get('province_id'),
-										'amphur_id'=>$this->input->get('amphur_id')
+				
+				$fillter=array('geo_id'=>$this->input->get_post('geo_id'),
+										'province_id'=>$this->input->get_post('province_id'),
+										'amphur_id'=>$this->input->get_post('amphur_id'),
+										'published'=>$this->input->get_post('published')
 										);
-					$fillter=$fillter_get;
-				}
+
 				$fillter_query_string='?geo_id='.$this->input->get_post('geo_id');
 				$fillter_query_string.='&province_id='.$this->input->get_post('province_id');
 				$fillter_query_string.='&amphur_id='.$this->input->get_post('amphur_id');
+				$fillter_query_string.='&published='.$this->input->get_post('published');
 				
 				$limit=$this->input->get('per_page');
 				$config['page_query_string'] = TRUE;
@@ -219,6 +220,7 @@ class Trader extends CI_Controller {
 				$this->template->add_js($this->load->view('js/geo_fillter.js',null,TRUE),'embed',TRUE);
 				$fillter['geo_fillter']=$this->country_geography->get_all();
 				$fillter['product_type_fillter']=$this->base_product_type->get_all();
+				$fillter['status_list']=$this->trader_profile->get_status_all();
 				$data['content']=array('title'=>"<i class='fa fa-filter fa-fw'></i>ตัวกรองข้อมูล",
 										'size'=>3,
 										'color'=>'success',
@@ -262,6 +264,7 @@ class Trader extends CI_Controller {
 
 		// prepare data for fillter 
 		$this->template->add_js($this->load->view('js/geo_fillter.js',null,TRUE),'embed',TRUE);
+		$fillter['status_list']=$this->trader_profile->get_status_all();
 		$fillter['geo_fillter']=$this->country_geography->get_all();
 		$fillter['product_type_fillter']=$this->base_product_type->get_all();
 		$data['content']=array('title'=>"<i class='fa fa-filter fa-fw'></i>ตัวกรองข้อมูล",

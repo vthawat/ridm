@@ -58,8 +58,11 @@
 		</div>
 		<span class="pull-right">
 			<a href="<?=base_url('trader/profile/view/'.$item->id)?>" class="btn icon-btn btn-info"><span class="btn-glyphicon fa fa-search-plus img-circle text-info"></span>รายละเอียด</a>
+			<?php if($item->published!=4):?>
 			<button class="btn icon-btn btn-warning edit" onclick="javascript:location.href='<?=base_url('trader/profile/edit/'.$item->id)?>'"><span class="btn-glyphicon fa fa-edit img-circle text-warning"></span>แก้ไข</button>
-			
+			<?php else:?>
+			<button class="btn icon-btn btn-danger delete" onclick="javascript:if(confirm('ข้อมูลนี้จะถูกลบและรวมถึงผลิตภัณฑ์ที่เกี่ยข้อง')) location.href='<?=base_url('trader/profile/delete/'.$item->id)?>'"><span class="btn-glyphicon fa fa-remove img-circle text-warning"></span>ลบ</button>
+			<?php endif;?>
 			<!-- Single button -->
 			<div class="btn-group">
 			  <button type="button" class="btn icon-btn btn-primary change-staus dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,7 +70,7 @@
 			  </button>
 			  <ul class="dropdown-menu">
 			  	<?php foreach($trader_status_list as $status_item):?>
-			  		<?php if($status_item->status!=3):?>
+			  		<?php if($status_item->status!=4):?>
 			    		<li <?php if($status_item->status==$item->published) print'class="active"'?>><a href="<?=base_url('trader/profile/change_staus/'.$item->id.'/'.$status_item->status)?>"><?=$status_item->status_name?></a></li>
 					 <?php else:?>
 					    <li role="separator" class="divider"></li>

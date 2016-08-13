@@ -12,17 +12,17 @@ if ( ! function_exists('published'))
 		//$publish_status=array('ยังไม่แผยแพร่','แผยแพร่','ปิดกิจการ');
 		switch ($status)
 		{
-			case 0:
-				return '<span class="label label-primary">'.$publish_status[$status].'</span>';
-			break;
 			case 1:
-				return '<span class="label label-success">'.$publish_status[$status].'</span>';
+				return '<span class="label label-primary">'.$publish_status[$status-1].'</span>';
 			break;
 			case 2:
-				return '<span class="label bg-maroon">'.$publish_status[$status].'</span>';
+				return '<span class="label label-success">'.$publish_status[$status-1].'</span>';
 			break;
 			case 3:
-				return '<span class="label label-danger">'.$publish_status[$status].'</span>';
+				return '<span class="label bg-maroon">'.$publish_status[$status-1].'</span>';
+			break;
+			case 4:
+				return '<span class="label label-danger">'.$publish_status[$status-1].'</span>';
 			break;			
 
 		}
