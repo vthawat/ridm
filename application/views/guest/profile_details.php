@@ -94,7 +94,7 @@
 								</address>								
 								<address><i class="fa fa-link fa-fw"></i>เว็บไซต์
 									<?php if(!empty($trader->website)):?>
-										<a href="<?=$trader->website?>" target="_blank"><?=$trader->website?></a>
+										<a href="<?=prep_url($trader->website)?>" target="_blank"><?=$trader->website?></a>
 										<?php else:?>
 									<span class="text-red">ไม่มีข้อมูล</span>
 									<?php endif;?>								

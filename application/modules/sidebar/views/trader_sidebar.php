@@ -4,7 +4,7 @@
               <ul class="treeview-menu">
               	<li><a href="<?=base_url('trader/profile')?>"><i class='fa fa-th-list text-green fa-fw'></i><?=$header_title['profile']?></a></li>
                 <li><a href="<?=base_url('trader/production')?>"><i class='fa fa-paper-plane text-green fa-fw'></i><?=$header_title['production']?></a></li>
-                <li><a href="<?=base_url('trader/map')?>"><i class='fa fa-map-marker text-green fa-fw'></i><?=$header_title['map']?></a></li>
+                <li><a href="<?=base_url('trader/gis')?>"><i class='fa fa-map-marker text-green fa-fw'></i><?=$header_title['map']?></a></li>
                 <li><a href="<?=base_url('trader/logistic')?>"><i class='fa fa-truck text-green fa-fw'></i><?=$header_title['logistic']?></a></li>
               </ul>
             </li>

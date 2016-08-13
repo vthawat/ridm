@@ -447,10 +447,78 @@ class Trader extends CI_Controller {
 	else  redirect(base_url('trader/profile/edit/'.$id));
 
  }
- function map()
+ function gis()
 	{
-		//$this->template->write('page_header',"<i class='fa fa-map-marker fa-fw'></i>".$this->trader_sidebar->get_items()[$this->router->fetch_method()]);
+		$this->load->model('country_district');
+		$this->load->model('country_amphur');
+		$this->load->model('country_province');
+		//$this->template->write('page_header',"<i class='fa fa-map-marker fa-fw'></i>GIS");
+						$fillter=array('geo_id'=>$this->input->get_post('geo_id'),
+											'province_id'=>$this->input->get_post('province_id'),
+											'amphur_id'=>$this->input->get_post('amphur_id'),
+											'published'=>'2'
+											);
+					
+					$fillter_query_string='?geo_id='.$this->input->get_post('geo_id');
+					$fillter_query_string.='&province_id='.$this->input->get_post('province_id');
+					$fillter_query_string.='&amphur_id='.$this->input->get_post('amphur_id');
+					
+					$data['gis_data']=$this->trader_profile->get_all(null,null,$fillter);
+					
+					if(!empty($data['gis_data']))
+					{
+						$map_icon=json_encode(array('icon'=>base_url('images/trader-pin.png')));
+						$trader_detail_path=json_encode(array('path'=>base_url('guest/trader/ajax/')));
+						$json_gis_data=$this->gis_trader_json($this->trader_profile->get_all(null,null,$fillter));
+						$json_val='var trader_gis='.$json_gis_data.';';
+						$json_val.='var map_icon='.$map_icon.';';
+						$json_val.='var trader_detail_path='.$trader_detail_path.';';
+						$this->template->add_js($json_val,'embed',TRUE);
+							// map helpers
+						$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places','link');
+						$this->template->add_js('assets/gmaps/js/gmap3.min.js');
+						$this->template->add_css($this->load->view('guest/css/map.css',null,TRUE),'embed',TRUE);
+						$this->template->add_js($this->load->view('guest/js/view-big-map.js',null,TRUE),'embed',TRUE);
+					}
+					// gis map
+					$data['content']=array('title'=>$this->load->view('guest/nav',null,TRUE)."<i class='fa fa-map-marker fa-fw'></i>GIS View",
+											'size'=>9,
+											'toolbar'=>'<a href="'.base_url('trader/profile/fillter'.$fillter_query_string).'" class="icon-btn btn btn-warning"><span class="btn-glyphicon fa fa-th-list img-circle text-warning"></span>List View</a>',
+											'color'=>'primary',
+											'detail'=>$this->load->view('guest/trader-gis',$data,TRUE));
+					$this->template->write_view('content','guest/contents',$data);
+
+
+					// prepare data for fillter 
+					$this->template->add_js($this->load->view('guest/js/geo_fillter.js',null,TRUE),'embed',TRUE);
+					$fillter['geo_fillter']=$this->country_geography->get_all();
+					$fillter['product_type_fillter']=$this->base_product_type->get_all();
+					$fillter['country_province']=$this->country_province;
+					$fillter['country_geography']=$this->country_geography;
+					$data['content']=array('title'=>"<i class='fa fa-filter fa-fw'></i>ตัวกรองข้อมูล",
+											'size'=>3,
+											'color'=>'success',
+											'detail'=>$this->load->view('guest/profile_fillter_gis',$fillter,TRUE));
+					$this->template->write_view('content','guest/contents',$data);
+
+
+
+
+
 		$this->template->render();
+	}
+	function gis_trader_json($trader=null)
+	{
+		$gis=array();
+		foreach ($trader as $item) {
+			if($item->latitude!=0&&$item->longtitude!=0)
+			{
+				array_push($gis,array('position'=>array($item->latitude,$item->longtitude),
+				array('content'=>array($item->id))));
+			}
+		}
+		//exit(print_r($gis));
+		return json_encode($gis);
 	}
  function logistic()
 	{

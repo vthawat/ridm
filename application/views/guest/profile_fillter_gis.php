@@ -1,4 +1,4 @@
-<form method="post" class="form-horizontal country-fillter" action="<?=base_url('guest/trader/gis')?>">
+<form method="post" class="form-horizontal country-fillter" action="">
 	<div class="form-group">
 		 <label for="geo" class="col-sm-3 control-label">ภูมิภาค</label>
 		 <div class="col-sm-9">
