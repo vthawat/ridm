@@ -157,6 +157,55 @@ class Guest extends CI_Controller {
 
 			switch ($action) 
 			{
+				
+				case 'logistic':
+
+						$fillter=array('geo_id'=>$this->input->get_post('geo_id'),
+											'province_id'=>$this->input->get_post('province_id'),
+											'amphur_id'=>$this->input->get_post('amphur_id'),
+											'published'=>'2'
+											);
+					
+					$fillter_query_string='?geo_id='.$this->input->get_post('geo_id');
+					$fillter_query_string.='&province_id='.$this->input->get_post('province_id');
+					$fillter_query_string.='&amphur_id='.$this->input->get_post('amphur_id');
+					
+					$data['gis_data']=$this->Traders->get_all(null,null,$fillter);
+					
+					if(!empty($data['gis_data']))
+					{
+						$map_icon=json_encode(array('icon'=>base_url('images/trader-pin.png')));
+						$trader_detail_path=json_encode(array('path'=>base_url('guest/trader/ajax/')));
+						$json_gis_data=$this->gis_trader_json($this->Traders->get_all(null,null,$fillter));
+						$json_val='var trader_gis='.$json_gis_data.';';
+						$json_val.='var map_icon='.$map_icon.';';
+						$json_val.='var trader_detail_path='.$trader_detail_path.';';
+						$this->template->add_js($json_val,'embed',TRUE);
+							// map helpers
+						$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places&language=th','link');
+						$this->template->add_js('assets/gmaps/js/gmap3.min.js');
+						$this->template->add_css($this->load->view('trader/css/map.css',null,TRUE),'embed',TRUE);
+						$this->template->add_js($this->load->view('trader/js/map-logistic.js',null,TRUE),'embed',TRUE);
+					}
+
+						$data['content']=array('title'=>$this->load->view('guest/nav',null,TRUE).'<i class="fa fa-truck fa-fw"></i>Logistic',
+											'size'=>9,
+											'toolbar'=>'<a href="'.base_url('guest/trader'.$fillter_query_string).'" class="icon-btn btn btn-warning"><span class="btn-glyphicon fa fa-th-list img-circle text-warning"></span>List View</a>',
+											'color'=>'success',
+											'detail'=>$this->load->view('trader/map-logistic',$data,TRUE));
+					$this->template->write_view('content','guest/contents',$data);
+										// prepare data for fillter 
+					$this->template->add_js($this->load->view('guest/js/geo_fillter.js',null,TRUE),'embed',TRUE);
+					$fillter['geo_fillter']=$this->Geo->get_all();
+					$fillter['product_type_fillter']=$this->Product_type->get_all();
+					//$fillter['country_province']=$this->country_province;
+					//$fillter['country_geography']=$this->Geo;
+					$data['content']=array('title'=>"<i class='fa fa-filter fa-fw'></i>ตัวกรองข้อมูล",
+											'size'=>3,
+											'color'=>'success',
+											'detail'=>$this->load->view('guest/profile_fillter_gis',$fillter,TRUE));
+					$this->template->write_view('content','guest/contents',$data);
+				break;
 				case 'gis':
 						$fillter=array('geo_id'=>$this->input->get_post('geo_id'),
 											'province_id'=>$this->input->get_post('province_id'),
@@ -180,7 +229,7 @@ class Guest extends CI_Controller {
 						$json_val.='var trader_detail_path='.$trader_detail_path.';';
 						$this->template->add_js($json_val,'embed',TRUE);
 							// map helpers
-						$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places','link');
+						$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places&language=th','link');
 						$this->template->add_js('assets/gmaps/js/gmap3.min.js');
 						$this->template->add_css($this->load->view('guest/css/map.css',null,TRUE),'embed',TRUE);
 						$this->template->add_js($this->load->view('guest/js/view-big-map.js',null,TRUE),'embed',TRUE);
@@ -188,7 +237,7 @@ class Guest extends CI_Controller {
 					// gis map
 					$data['content']=array('title'=>$this->load->view('guest/nav',null,TRUE)."<i class='fa fa-map-marker fa-fw'></i>GIS View",
 											'size'=>9,
-											'toolbar'=>'<a href="'.base_url('guest/trader'.$fillter_query_string).'" class="icon-btn btn btn-warning"><span class="btn-glyphicon fa fa-th-list img-circle text-warning"></span>List View</a>',
+											'toolbar'=>'<a href="'.base_url('guest/trader'.$fillter_query_string).'" class="icon-btn btn btn-warning"><span class="btn-glyphicon fa fa-th-list img-circle text-warning"></span>List View</a> <a href="'.base_url('guest/trader/logistic'.$fillter_query_string).'" class="btn btn-primary icon-btn"><span class="btn-glyphicon fa fa-truck img-circle text-primary"></span>Logistic View</a>',
 											'color'=>'primary',
 											'detail'=>$this->load->view('guest/trader-gis',$data,TRUE));
 					$this->template->write_view('content','guest/contents',$data);
@@ -222,7 +271,7 @@ class Guest extends CI_Controller {
 					$this->template->add_js($this->load->view('guest/js/light-box.js',null,TRUE),'embed',TRUE);
 					$this->template->add_css($this->load->view('guest/css/products-list.css',null,TRUE),'embed',TRUE);
 									// map helpers
-					$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places','link');
+					$this->template->add_js('https://maps.google.com/maps/api/js?key=AIzaSyBGE-KGQB9PP6uq4wErMO0Xbxmz4FWxy3Q&libraries=places&language=th','link');
 					//$this->template->add_js('assets/gmaps/js/locationpicker.jquery.min.js');
 					$this->template->add_js('assets/gmaps/js/gmap3.min.js');
 					$this->template->add_css($this->load->view('guest/css/map.css',null,TRUE),'embed',TRUE);
@@ -297,7 +346,7 @@ class Guest extends CI_Controller {
 				$data['content']=array('color'=>'primary',
 											'size'=>9,
 											'title'=>$this->load->view('guest/nav',null,TRUE).'<h3>จำนวนทั้งหมด '.$config['total_rows'].' รายการ</h3>',
-											'toolbar'=>'<a href="'.base_url('guest/trader/gis'.$fillter_query_string).'" class="btn btn-warning icon-btn"><span class="btn-glyphicon fa fa-dot-circle-o img-circle text-warning"></span>GIS View</a>',
+											'toolbar'=>'<a href="'.base_url('guest/trader/gis'.$fillter_query_string).'" class="btn btn-warning icon-btn"><span class="btn-glyphicon fa fa-map img-circle text-warning"></span>GIS View</a> <a href="'.base_url('guest/trader/logistic'.$fillter_query_string).'" class="btn btn-primary icon-btn"><span class="btn-glyphicon fa fa-truck img-circle text-primary"></span>Logistic View</a>',
 											'detail'=>$this->load->view('guest/profile_list_items',$data,TRUE));;
 				$this->template->write_view('content','guest/contents',$data);
 						
