@@ -5,6 +5,7 @@ $(document).ready(function(){
                     latitude: $('#latitude').val(),
                     longitude:  $('#longtitude').val(),
                 },
+                maptype: 'ROADMAP',
                 radius: 120,
                 inputBinding: {
                     latitudeInput: $('#latitude'),
