@@ -54,7 +54,7 @@ class user_role extends  CI_Model {
      * Get all existing user role saved in database
      * @return array
      */
-    function get_role_list(){
+    public function get_role_list(){
         $query = $this->db->get($this->_table_name);
         $retarr=array();
         if ($query->num_rows() > 0) {

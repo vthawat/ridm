@@ -56,6 +56,16 @@ class ezrbac
     {
         return $this->CI->load->view('ezrbac/login/footer',null,TRUE);
     }
+    public function getRoleList()
+    {
+        return $this->CI->user_role->get_role_list();
+    }
+    public function getRoleName()
+    {
+
+        $user=$this->getCurrentUser();
+        return $this->CI->user_role->get_role_by_id($user->user_role_id);
+    }
 
     /**
      * return the user object for logged in user

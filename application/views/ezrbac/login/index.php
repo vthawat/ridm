@@ -1,87 +1,87 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/rbac/css/style.css')?>" media="all" />
-    <script type="text/javascript" src="<?php echo base_url('assets/rbac/js/login_js.js')?>"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link href="<?=base_url()?>themes/bootstrap3/css/bootstrap.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="<?=base_url()?>themes/bootstrap3/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Theme style -->
+  <link href="<?=base_url()?>themes/admin/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?=base_url()?>assets/plugins/iCheck/square/blue.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body class="bg_c">
-
-<div class="login_wrapper">
-    <div class="cf tac">
-        <h3>RIDM</h3>
-    </div>
-    <p class="sepH_b"></p>
-
-    <div class="loginBox">
-        <div class="heading cf">
-            <h3>Login</h3>
+<body class="login-page bg-green-gradient">
+<div class="login-box well">
+  <div class="login-logo">
+    <a href="<?=base_url()?>"><img src="<?=base_url('images/ridm-logo.png')?>"></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <?php if($form_error):?>
+        <div class="alert alert-warning"><?=$form_error?></div>
+    <?php endif;?>
+    <form action="" method="post">
+      <div class="form-group has-feedback">
+        <label class="text-blue">Email</label>
+        <input type="email" class="form-control" placeholder="account@email.com" name="username">
+      </div>
+      <div class="form-group has-feedback">
+        <label class="text-blue">Password</label>
+        <input type="password" class="form-control" placeholder="Password" name="password">
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="checkbox icheck">
+            <label>
+              <input name="remember" type="checkbox"> Remember Me
+            </label>
+          </div>
         </div>
-        <div class="content">
-            <div class="login_panes formEl_a">
-                <div
-                    id="log_in_div" <?php if ($this->input->post('action') == 'recover_password') echo "style='display:none'" ?>>
-                    <p class="sepH_b"></p>
-
-                    <form action="" method="post" class="formEl sepH_c" id="form_login">
-                        <?php if ($this->input->post('action') != 'recover_password'): ?>
-                        <div class="msg_box msg_error" id="allErrors"
-                             style="display:<?php echo ($form_error) ? 'block' : 'none'?>"><?php echo $form_error?></div>
-                        <?php endif; ?>
-                        <div class="sepH_a">
-                            <label for="username" class="lbl_a">Email:</label>
-                            <input type="text" id="username" name="username" class="inpt_a"
-                                   value="<?php echo $this->input->post('username') ?>"/>
-                            <input type="hidden" name="action" value="login"/>
-                        </div>
-                        <div class="sepH_b">
-                            <label for="password" class="lbl_a">Password:</label>
-                            <input type="password" id="password" name="password" class="inpt_a"/>
-                        </div>
-                        <div class="sepH_b">
-                            <input type="checkbox" class="inpt_c" id="remember"
-                                   name="remember" <?php if ($this->input->post('remember')) echo 'checked="checked" '?>/>
-                            <label for="remember" class="lbl_c">Remember me</label>
-                            <button class="btn_a btn fr" type="submit">Login</button>
-                        </div>
-
-                    </form>
-                    <div class="content_btm">
-                        <a href="javascript:" onclick="display.password()">Forgot your password?</a>
-                    </div>
-                </div>
-                <div
-                    id="get_password_div" <?php if ($this->input->post('action') != 'recover_password') echo "style='display:none'" ?>>
-                    <?php if (isset($reset_email_confirm)): ?>
-                    <p class="sepH_b"> Please Check your email! An email has been set with the instruction to reset your
-                        password!</p>
-                    <?php else: ?>
-                    <p class="sepH_b">Please enter your email address. You will receive a link to create a new password
-                        via email.</p>
-                    <?php endif ?>
-                    <form method="post" class="formEl sepH_c" name="frm_recover">
-                        <?php if ($this->input->post('action') == 'recover_password'): ?>
-                        <div class="msg_box msg_error" id="allErrors"
-                             style="display:<?php echo ($form_error) ? 'block' : 'none'?>"><?php echo $form_error?></div>
-                        <?php endif; ?>
-                        <div class="sepH_b">
-                            <label for="forget_username" class="lbl_a">Email:</label>
-                            <input type="text" id="forget_username" name="username" class="inpt_a"
-                                   value="<?php echo $this->input->post('username') ?>"/>
-                            <input type="hidden" name="action" value="recover_password"/>
-                        </div>
-                        <button class="btn_a btn">Get new password</button>
-                    </form>
-                    <div class="content_btm">
-                        <a href="javascript:" onclick="display.login()">Back to login</a>
-                    </div>
-                </div>
-
-            </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-sign-in"></i>Sign In</button>
         </div>
-    </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <!-- /.social-auth-links -->
+
+    <a href="#">I forgot my password</a><br>
+    <a href="<?=base_url('guest/member_regist')?>" class="text-center">Register a new membership</a>
+
+  </div>
+  <!-- /.login-box-body -->
 </div>
+<!-- /.login-box -->
+
+<!-- jQuery 2.2.0 -->
+<script src="<?=base_url()?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?=base_url()?>themes/bootstrap3/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="<?=base_url()?>assets/plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
 </body>
 </html>

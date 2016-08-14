@@ -5,5 +5,6 @@
 	            <li><a href="<?=base_url('guest/production')?>" class="smothscroll navbar-btn"><i class="fa fa-paper-plane fa-fw"></i>ผลิตภัณฑ์</a></li>
 	            <li><a href="<?=base_url('guest/trader')?>" class="smothscroll navbar-btn"><i class="fa fa-industry fa-fw"></i>ผู้ประกอบการ</a></li>
 	            <li><a href="<?=base_url('trader')?>" class="smothScroll navbar-btn"><i class="fa fa-sign-in fa-fw"></i>เข้าสู่ระบบ</a></li>
+	            <li><a href="<?=base_url('guest/member_regist')?>" class="smothScroll navbar-btn"><i class="fa fa-user fa-fw"></i>สมัครสมาชิก</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->

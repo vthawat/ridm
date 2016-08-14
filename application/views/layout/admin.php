@@ -102,6 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                      		 <p><span><?php $userinfo=$this->ezrbac->getUserMeta($this->ezrbac->getCurrentUserID());?>
                      		 	<?=$userinfo->first_name?> <?=$userinfo->last_name?></span> 	
                      		 </p>
+                         <p><?=$this->ezrbac->getRoleName()?></p>
                      		 <p><span></span></p>
                      		
                      	</li>

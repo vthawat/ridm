@@ -16,6 +16,7 @@ class Trader extends CI_Controller {
 	function index()
 	{
 		$this->template->render();
+		//$this->profile();
 	}
 	
 	function profile($action=null,$id=null,$status=null)

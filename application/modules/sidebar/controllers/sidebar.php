@@ -5,13 +5,15 @@ class Sidebar extends CI_Controller {
 	var $sidebar_set;
 	function __construct()
 	{
-		parent::__construct();
-		$this->web_sidebar();
-		$this->trader_sidebar();
-		$this->basic_sidebar();
+				parent::__construct();
+				$this->web_sidebar();
+				$this->trader_sidebar();
+				$this->basic_sidebar();
+
 	}
 	function get_sidebar()
 	{
+		
 		foreach($this->sidebar_items as $item)
 		   $this->sidebar_set.=$item;
 		

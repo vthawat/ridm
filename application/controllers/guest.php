@@ -35,6 +35,56 @@ class Guest extends CI_Controller {
 		$this->template->write_view('content','guest/home_block',$data);
 		$this->template->render();
 	}
+	function member_regist($action=null)
+	{
+		try{
+
+				switch ($action) {
+					case 'new':
+					if($this->session->flashdata('captcha')==$this->input->post('captcha'))
+					{
+						$user=$this->input->post();
+						$user['meta']=array('first_name'=>$user['first_name'],'last_name'=>$user['last_name'],'phone'=>$user['phone']);
+						$user['verification_status']=1;
+						unset($user['captcha']);
+						unset($user['first_name']);
+						unset($user['last_name']);
+						unset($user['phone']);
+						//exit(print_r($user));
+						$this->ezrbac->createUser($user);
+						redirect(base_url('trader'));
+						//$this->template->render();
+						
+					}
+					else show_error('รหัสความปลอดภัยไม่ถูกต้อง');
+						break;
+					
+					default:
+						$this->load->helper('captcha');
+						//create captcha
+						$captcha_init = array('img_path' => './images/captcha/',
+								'img_url' => base_url('images/captcha').'/',
+								'font_path' => 'system/fonts/texb.ttf',
+								'word'=>substr(rand(400000,999999),0,4) ,
+								'word_length'=>'4',
+								'img_width' => '150',
+								'img_height' => '30',
+								'expiration' => '200');
+						$this->session->set_flashdata('captcha',$captcha_init['word']);
+						$data['captcha']=create_captcha($captcha_init);
+						$data['list_role']=$this->ezrbac->getRoleList();
+						$data['content']=array('title'=>$this->load->view('guest/nav',null,TRUE),
+												'detail'=>$this->load->view('guest/member-regist',$data,TRUE));
+						$data['inside']=$this->load->view('guest/contents',$data,TRUE);
+						$this->template->write_view('content','guest/content',$data);
+						$this->template->render();
+						break;
+				}
+		}
+		catch(Exception $e){
+			show_error($e->getMessage());
+		}
+	}
 	function km($action=null,$id=null)
 	{
 		//$data['inside']=$this->load->view('guest/nav',null,TRUE);
