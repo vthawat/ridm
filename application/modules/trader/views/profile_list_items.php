@@ -58,7 +58,7 @@
 		</div>
 		<span class="pull-right">
 			<a href="<?=base_url('trader/profile/view/'.$item->id)?>" class="btn icon-btn btn-info"><span class="btn-glyphicon fa fa-search-plus img-circle text-info"></span>รายละเอียด</a>
-		  <?php if($this->ezrbac->getCurrentUser()->id==$item->create_by_user_id):?>
+		  <?php if($this->ezrbac->getCurrentUser()->id==$item->create_by_user_id||$this->ezrbac->getCurrentUser()->user_role_id==1):?>
 			<?php if($item->published!=4):?>
 			<button class="btn icon-btn btn-warning edit" onclick="javascript:location.href='<?=base_url('trader/profile/edit/'.$item->id)?>'"><span class="btn-glyphicon fa fa-edit img-circle text-warning"></span>แก้ไข</button>
 			<?php else:?>
