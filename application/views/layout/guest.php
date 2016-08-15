@@ -43,6 +43,12 @@
 	 </div>
     <?=$header?>
     <?=$content?>
+    <div class="clearfix"></div>
+    <div id="c" class="ridm-footer">
+        <div class="container">
+            <?=$footer?>      
+        </div>
+</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

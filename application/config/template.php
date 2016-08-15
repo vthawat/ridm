@@ -69,7 +69,7 @@ $template['default']['regions'] = array(
    'notifications',
    'sidebar',
    'action_button',
-   'footer'=>array('content' =>array('<a href="#">ข้อกำหนดของการบริการ</a> | <a href="#">นโยบายความเป็นส่วนตัว</a>'))
+   'footer'
 );
 $template['default']['parser'] = 'parser';
 $template['default']['parser_method'] = 'parse';

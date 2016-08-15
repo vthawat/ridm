@@ -31,19 +31,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="user_role_id" class="col-sm-2 control-label">ระดับสิทธิ์</label>
-					<div class="col-md-4 col-sm-10">
-					 <select class="form-control" id="user_role_id" name="user_role_id" required="">
-					 	<option>--เลือกระดับสิทธิ์--</option>
-					 	<?php if(!empty($list_role)) foreach($list_role as $item):?>
-					 		<?php if($item['id']!=1):?>
-					 	<option value="<?=$item['id']?>"><?=$item['role_name']?></option>
-					 		<?php endif?>
-					 	<?php endforeach?>	
-					 </select>
-					</div>
-				</div>
-				<div class="form-group">
 					<label for="captcha" class="col-sm-2 control-label">รหัสความปลอดภัย</label>
 					<div class="col-md-4 col-sm-10">
 					<?=$captcha['image']?>

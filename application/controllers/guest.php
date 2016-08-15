@@ -22,6 +22,7 @@ class Guest extends CI_Controller {
 		$this->template->write('band_name','<img class="ridm-logo" src="'.base_url('images/ridm-logo.png').'">',TRUE);
 		$this->template->write_view('menu','guest/menu');
 		$this->template->write_view('header','guest/slide-intro');
+		$this->template->write_view('footer','guest/footer');
 	}
 
 	public function index()
@@ -46,6 +47,7 @@ class Guest extends CI_Controller {
 						$user=$this->input->post();
 						$user['meta']=array('first_name'=>$user['first_name'],'last_name'=>$user['last_name'],'phone'=>$user['phone']);
 						$user['verification_status']=1;
+						$user['user_role_id']=2;
 						unset($user['captcha']);
 						unset($user['first_name']);
 						unset($user['last_name']);
@@ -72,7 +74,7 @@ class Guest extends CI_Controller {
 								'expiration' => '200');
 						$this->session->set_flashdata('captcha',$captcha_init['word']);
 						$data['captcha']=create_captcha($captcha_init);
-						$data['list_role']=$this->ezrbac->getRoleList();
+						//$data['list_role']=$this->ezrbac->getRoleList();
 						$data['content']=array('title'=>$this->load->view('guest/nav',null,TRUE),
 												'detail'=>$this->load->view('guest/member-regist',$data,TRUE));
 						$data['inside']=$this->load->view('guest/contents',$data,TRUE);

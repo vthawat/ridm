@@ -192,7 +192,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', end
 #c {
 	background: #222222;
 	padding-top: 15px;
-	text-align: right;
+	background-image: url('../img/Grass-Slider-Background1.png') ;
+	background-position:10%;
 }
 
 #c p {
