@@ -28,7 +28,7 @@
 
     <!-- Fixed navbar -->
 	 <div id="navigation" class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
+		
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	            <span class="icon-bar"></span>
@@ -37,16 +37,14 @@
 	          </button>
 	          <a class="navbar-brand" href="<?=base_url()?>"><?=$band_name?></a>
 	        </div>
-	        <?=$menu?>
-		</div>
-		
+	        <?=$menu?>	
 	 </div>
     <?=$header?>
     <?=$content?>
     <div class="clearfix"></div>
-    <div id="c" class="ridm-footer">
-        <div class="container">
-            <?=$footer?>      
+    <div id="c">
+        <div class="container ridm-footer">
+            <?=$footer?>
         </div>
 </div>
     <!-- Bootstrap core JavaScript

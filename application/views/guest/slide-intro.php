@@ -1,4 +1,3 @@
-	<section id="home" name="home"></section>
 	<div id="headerwrap" class="s1">
 		<div class="container">
 			<div class="row">

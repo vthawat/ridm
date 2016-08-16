@@ -5,8 +5,8 @@
 	margin-top: -8px;
 }
 .ridm-logo{
-	height: 64px;
-	margin-top: -10px;
+	height: 40px;
+	margin-top: 0px;
 }
 .info-box-icon{
 	background: none;
@@ -21,6 +21,7 @@
 .number{
 	font-size: larger;
 }
+
 #navigation{
 height: 70px;
 border-bottom: none;
@@ -44,23 +45,22 @@ background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#bababa', GradientType=0 );
 }
 #c{
-/*	background: rgba(73,155,234,1);
-background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(32,124,229,1)));
-background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
-background: -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
-background: -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
-background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(32,124,229,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=0 );
-*/
 
 
 }
 .ridm-footer{
 	min-height: 300px;
+	padding-bottom: 150px;
 	
 }
 .ridm-footer h4
 {
-	font-family: 
+	font-family: "Raleway"
 }
+@media (min-width: 768px) {
+  .navbar-collapse {
+    width: auto;
+    border-top: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }

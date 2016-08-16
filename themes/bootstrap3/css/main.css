@@ -190,13 +190,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', end
 /* Copyright Wrap */
 
 #c {
-	background: #222222;
+	/*background: #222222;*/
 	padding-top: 15px;
 	background-image: url('../img/Grass-Slider-Background1.png') ;
+	background-repeat: repeat-x;
 	background-position:10%;
 }
 
-#c p {
-	color: white
+@font-face {
+    font-family: 'cs_chatthairegular';
+    src: url('../fonts/cschatthai-webfont.woff2') format('woff2'),
+         url('../fonts/cschatthai-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.webfont{
+	font-family: 'cs_chatthairegular';
 }
 
