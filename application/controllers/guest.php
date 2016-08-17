@@ -33,6 +33,7 @@ class Guest extends CI_Controller {
 		$data['productions']=$this->load->view('guest/production-category',array('product_category'=>$this->Product_type->get_all()),TRUE);
 		$data['trader']=$this->load->view('guest/trader-geo-list',array('geo'=>$this->Geo->get_all()),TRUE);
 		//$data['inside']=$this->load->view('guest/home_block',$data,TRUE);
+		$data['stat_ridm']=$this->load->view('guest/stat-ridm',null,TRUE);
 		$this->template->write_view('content','guest/home_block',$data);
 		$this->template->render();
 	}

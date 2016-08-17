@@ -23,6 +23,9 @@
 	 <div class="box-footer text-center">
 	 	<a href="http://www.fti.or.th" target="_blank"><img class="img-responsive" src="<?=base_url('images/fti-link.png')?>"></a>
 	 </div>
+	 <div class="box-footer text-center">
+	 	<a href="http://www.diw.go.th" target="_blank"><img class="img-responsive" src="<?=base_url('images/diw-logo.png')?>"></a>
+	 </div>	 
 
 	 </div>
 </div>
