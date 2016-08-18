@@ -64,6 +64,14 @@
 	 </div>
 	</div>
 </div>
+<div class="col-md-3">
+	<div class="box box-info">
+	 <div class="box-header"><h3 class="webfont">สถิติเว็บไซต์</h3></div>
+	 <div class="box-body">
+	 		<script src="http://t1.extreme-dm.com/f.js" id="eXF-ridm-0" async defer></script>
+	 </div>
+	</div>
+</div>
 <div class="col-md-9">
 	<div class="box box-warning">
 	 <div class="box-header"><h3 class="webfont">ผู้ประกอบการอุตสาหรรมยางพารา</h3></div>
